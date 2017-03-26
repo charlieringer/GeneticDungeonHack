@@ -2,7 +2,7 @@ GeneticDungeon dungeonMaker;
 int xOff = 100;
 int yOff = 100;
 int gridSize = 15;
-boolean noUI = true;
+boolean noUI = false;
 int maxGens = 30;
 int numbGens = 0;
 

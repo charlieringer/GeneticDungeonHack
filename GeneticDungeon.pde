@@ -35,10 +35,9 @@ public class GeneticDungeon {
       for (int j = 0; j < sorted.length; j++) if (sorted[j] != null)
       {
         totalFitness += (int)sorted[j].fitness;
-        println("Fitness loop: " + j + " fitness: " + sorted[j].fitness);
+      
       }
       int randomPoint = (totalFitness > 0) ? gen.nextInt(totalFitness) : 0;
-      println("loop: " + i +  "totfit: " + totalFitness + " randpoint " + randomPoint);
       int count = 0;
 
       boolean added = false;
