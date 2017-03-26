@@ -92,7 +92,7 @@ class Dungeon
 
     float childAVG = (totRoomsVisited > 0) ? totChildren/totRoomsVisited : 0;
 
-    float depthAVG = totDepth/simulations;
+    float depthAVG = (totDepth/simulations);
 
     //fitness = roomVarience+mobVarience+roomAVG+mobAVG+lootAVG;
     fitness = roomAVG+mobAVG+lootAVG+depthAVG+childAVG-roomVarience-mobVarience;
@@ -165,18 +165,6 @@ class Dungeon
     for (int i = 0; i < room.children.size(); i++)
     {
       mutate(rate, room.children.get(i));
-    }
-    if ( !hasGoal(startRoom))
-    {        
-      //Generate a random goal node
-      Room currRoom = startRoom;
-      int count = 0;
-      while (currRoom.hasChild())
-      {
-        if (++count > 1000) System.out.println("Error in population");
-        currRoom = currRoom.selectNextRoom();
-      }
-      currRoom.isGoalRoom = true;
     }
   }
 

@@ -11,54 +11,63 @@ void setup()
 {
   dungeonMaker = new GeneticDungeon();
   dungeonMaker.run();
-  size(1000,5000);
+  size(1000, 5000);
   stroke(128);
 }
 
 void draw()
 {
-  if(noUI && numbGens < maxGens)
+  if ((noUI && numbGens < maxGens))
   {
     dungeonMaker.run();
     numbGens++;
+    background(0);
+    pushMatrix();
+    translate(xOff, yOff);
+    dungeonMaker.drawBest(gridSize);
+    popMatrix();
+    PImage save = get(0, 0, 1000, 5000);
+    save.save(numbGens + ".png");
+  } else if (!noUI) {
+        background(0);
+    pushMatrix();
+    translate(xOff, yOff);
+    dungeonMaker.drawBest(gridSize);
+    popMatrix();
+    PImage save = get(0, 0, 1000, 5000);
+    save.save(numbGens + ".png");
+    
   }
-  background(0);
-  pushMatrix();
-  translate(xOff,yOff);
-  dungeonMaker.drawBest(gridSize);
-  popMatrix();
-  PImage save = get(0,0,2000,2000);
-  save.save(numbGens + ".png");
 }
 
 void keyPressed()
 {
-  if(noUI) return;
-  if(key == ' ')
+  if (noUI) return;
+  if (key == ' ')
   {
     dungeonMaker.run();
   }
-  if(key == 'w')
+  if (key == 'w')
   {
     yOff+=gridSize;
   }
-    if(key == 'a')
+  if (key == 'a')
   {
     xOff+=gridSize;
   }
-    if(key == 's')
+  if (key == 's')
   {
     yOff-=gridSize;
   }
-    if(key == 'd')
+  if (key == 'd')
   {
     xOff-=gridSize;
   }
-      if(key == 'q')
+  if (key == 'q')
   {
-    if(gridSize > 6)gridSize-=4;
+    if (gridSize > 6)gridSize-=4;
   }
-      if(key == 'e')
+  if (key == 'e')
   {
     gridSize+=4;
   }
@@ -66,6 +75,6 @@ void keyPressed()
 
 void mousePressed()
 {
-  if(noUI) return;
+  if (noUI) return;
   dungeonMaker.run();
 }
